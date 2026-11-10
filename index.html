@@ -293,7 +293,10 @@
         <button class="dialog-close" type="button" aria-label="Close request form">×</button>
       </div>
       <p class="request-description" id="request-description">Share a few details and we’ll help you plan your next painting or remodeling project.</p>
-      <form class="request-form" id="request-form">
+      <form class="request-form" id="request-form" name="estimate-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="estimate-request">
+        <input type="hidden" name="subject" value="Incoming Website Lead - WYV">
+        <p hidden><label>Leave this field empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="form-field">
           <label for="request-name">Your name <span aria-hidden="true">*</span></label>
           <input id="request-name" name="name" autocomplete="name" required>

@@ -81,15 +81,14 @@ requestForm.addEventListener("submit", async (event) => {
   requestStatus.textContent = "Sending your request…";
 
   try {
-    const response = await fetch("/api/lead", {
+    const response = await fetch("/", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(Object.fromEntries(new FormData(requestForm))),
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(requestForm)).toString(),
     });
 
     if (!response.ok) {
-      const result = await response.json().catch(() => ({}));
-      throw new Error(result.error || "We couldn't send your request. Please try again or call us.");
+      throw new Error("We couldn't send your request. Please try again or call us.");
     }
 
     requestForm.reset();
