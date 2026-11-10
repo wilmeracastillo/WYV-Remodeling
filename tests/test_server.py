@@ -82,7 +82,10 @@ class LeadEndpointTests(unittest.TestCase):
             server.send_lead_email(VALID_LEAD)
 
         message = smtp_client.send_message.call_args.args[0]
-        self.assertEqual(message["To"], "Wilmervelazques12@gmail.com")
+        self.assertEqual(
+            message["To"],
+            "info@wyvremodels.com, Wilmervelazques12@gmail.com",
+        )
         self.assertEqual(message["Subject"], "Incoming Website Lead - WYV")
         self.assertEqual(message["Reply-To"], VALID_LEAD["email"])
         body = message.get_content()

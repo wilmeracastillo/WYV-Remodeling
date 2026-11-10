@@ -11,7 +11,7 @@ from urllib.parse import unquote, urlparse
 
 
 ROOT = Path(__file__).resolve().parent
-RECIPIENT = "Wilmervelazques12@gmail.com"
+RECIPIENTS = ("info@wyvremodels.com", "Wilmervelazques12@gmail.com")
 SERVICES = {
     "Interior painting",
     "Exterior painting",
@@ -34,7 +34,7 @@ def send_lead_email(lead):
 
     message = EmailMessage()
     message["From"] = os.environ.get("SMTP_FROM", username)
-    message["To"] = RECIPIENT
+    message["To"] = ", ".join(RECIPIENTS)
     message["Reply-To"] = lead["email"].strip()
     message["Subject"] = "Incoming Website Lead - WYV"
     message.set_content(
